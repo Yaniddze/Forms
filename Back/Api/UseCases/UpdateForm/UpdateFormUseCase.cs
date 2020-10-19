@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Api.Domain;
 using Api.UseCases.Abstractions;
@@ -19,13 +20,16 @@ namespace Api.UseCases.UpdateForm
 
         public async Task<AbstractAnswer<Form>> Handle(UpdateFormRequest request, CancellationToken cancellationToken)
         {
-            var keywords = keysGetter.Handle(request.Fields);
+            var keywords = keysGetter.Handle(request.Fields).ToList();
+
+            keywords.Remove(nameof(Field.Name));
+            keywords.Remove(nameof(Field.Value));
 
             return await formUpdater.HandleAsync(new Form
             {
                 Fields = request.Fields,
                 Id = request.Id,
-                Keywords = keywords,
+                Keywords = keywords.ToArray(),
             });
         }
     }

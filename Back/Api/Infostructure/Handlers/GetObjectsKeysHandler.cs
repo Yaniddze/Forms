@@ -15,7 +15,9 @@ namespace Api.Infostructure.Handlers
 
             var matches = regex.Matches(converted);
             
-            return matches.Select(x => x.Value).ToArray();
+            var result = matches.Select(x => x.Value).ToArray();
+            
+            return result;
         }
     }
 }

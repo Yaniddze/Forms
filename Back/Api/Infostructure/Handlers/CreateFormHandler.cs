@@ -26,19 +26,28 @@ namespace Api.Infostructure.Handlers
         {
             try
             {
-                var mappedFields = fields.Select(x => mapper.Map<Field, FieldDB>(x));
-                var tempGuid = Guid.NewGuid();
-
+                var formGuid = Guid.NewGuid();
+                
+                var mappedFields = fields
+                    .Select(x =>
+                    {
+                        var mapped = mapper.Map<Field, FieldDB>(x);
+                        mapped.Id = Guid.NewGuid();
+                        mapped.FormId = formGuid;
+                        return mapped;
+                    });
+                
                 context.Forms.Add(new FormDB
                 {
-                    Id = tempGuid,
-                    Fields = mappedFields,
+                    Id = formGuid,
                     Keywords = keywords,
                 });
 
+                context.Fields.AddRange(mappedFields);
+
                 await context.SaveChangesAsync();
             
-                return CreateSuccess(tempGuid);
+                return CreateSuccess(formGuid);
             }
             catch
             {

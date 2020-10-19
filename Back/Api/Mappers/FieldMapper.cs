@@ -10,10 +10,6 @@ namespace Api.Mappers
         public void Install(IMapperConfigurationExpression options)
         {
             options.CreateMap<Field, FieldDB>()
-                .ForMember(x => x.Id,
-                    map => map.MapFrom(
-                        dest => dest.Id
-                    ))
                 .ForMember(x => x.Name,
                     map => map.MapFrom(
                         dest => dest.Name
@@ -24,10 +20,6 @@ namespace Api.Mappers
                     ));
             
             options.CreateMap<FieldDB, Field>()
-                .ForMember(x => x.Id,
-                    map => map.MapFrom(
-                        dest => dest.Id
-                    ))
                 .ForMember(x => x.Name,
                     map => map.MapFrom(
                         dest => dest.Name

@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Api.Domain;
 using Api.UseCases.Abstractions;
 using MediatR;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace Api.UseCases.CreateForm
 {
@@ -19,9 +22,12 @@ namespace Api.UseCases.CreateForm
 
         public async Task<AbstractAnswer<Guid>> Handle(CreateFormRequest request, CancellationToken cancellationToken)
         {
-            var keywords = keysGetter.Handle(request.Fields);
+            var keywords = keysGetter.Handle(request.Fields).ToList();
 
-            var created = await formCreator.HandleAsync(request.Fields, keywords);
+            keywords.Remove(nameof(Field.Name));
+            keywords.Remove(nameof(Field.Value));
+            
+            var created = await formCreator.HandleAsync(request.Fields, keywords.ToArray());
             
             return created;
         }
