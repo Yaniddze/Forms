@@ -26,13 +26,8 @@ namespace Api.Infostructure.Handlers
                     .DeleteAsync();
 
                 if (deleted > 0)
-                { 
-                    await context.Fields
-                        .Where(x => x.FormId == id)
-                        .DeleteAsync();
-                    
+                {
                     return CreateSuccess(id);
-
                 } 
                 
                 return CreateFailed(new[] {"Id not found"});

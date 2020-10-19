@@ -27,7 +27,6 @@ namespace Api.Infostructure.Handlers
             try
             {
                 var forms = await context.Forms
-                    .Include(x => x.Fields)
                     .Take(count)
                     .Skip(offset)
                     .Select(x => mapper.Map<FormDB, Form>(x))

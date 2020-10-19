@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Text.Json;
 using System.Threading.Tasks;
 using Api.UseCases.CreateForm;
 using Api.UseCases.DeleteForm;
@@ -45,19 +44,6 @@ namespace Api.Controllers
                 return Ok(CreateFailed(GetModelStateErrors()));
             }
 
-            foreach (var field in request.Fields)
-            {
-                switch (field.Value)
-                {
-                    case null:
-                        return Ok(CreateFailed(new[] {"Value must be not null"}));
-                    
-                    case JsonElement json:
-                        field.Value = json.ToString();
-                        break;
-                }
-            }
-
             var response = await mediator.Send(request);
 
             return Ok(response);
@@ -69,19 +55,6 @@ namespace Api.Controllers
             if (!ModelState.IsValid)
             {
                 return Ok(CreateFailed(GetModelStateErrors()));
-            }
-            
-            foreach (var field in request.Fields)
-            {
-                switch (field.Value)
-                {
-                    case null:
-                        return Ok(CreateFailed(new[] {"Value must be not null"}));
-                    
-                    case JsonElement json:
-                        field.Value = json.ToString();
-                        break;
-                }
             }
 
             var response = await mediator.Send(request);

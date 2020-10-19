@@ -8,6 +8,6 @@ namespace Api.UseCases.CreateForm
 {
     public class CreateFormRequest: IRequest<AbstractAnswer<Guid>>
     {
-        public IEnumerable<Field> Fields { get; set; }
+        public string Fields { get; set; }
     }
 }

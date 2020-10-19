@@ -27,10 +27,6 @@ namespace Api.Infostructure.Handlers
             {
                 var mappedForm = mapper.Map<Form, FormDB>(form);
 
-                await context.Fields
-                    .Where(x => x.FormId == mappedForm.Id)
-                    .DeleteAsync();
-
                 var updated = await context.Forms
                     .Where(x => x.Id == mappedForm.Id)
                     .UpdateAsync(x => new FormDB

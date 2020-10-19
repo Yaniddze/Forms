@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Api.DataBase.DbEntities
 {
@@ -7,7 +6,6 @@ namespace Api.DataBase.DbEntities
     {
         public Guid Id { get; set; }
         public string[] Keywords { get; set; }
-        
-        public IEnumerable<FieldDB> Fields { get; set; }
+        public string Fields { get; set; }
     }
 }
