@@ -6,6 +6,6 @@ namespace Api.Storage.Abstractions
 {
     public interface DeleteForm
     {
-        Task<AbstractAnswer<Guid>> HandleAsync();
+        Task<AbstractAnswer<Guid>> HandleAsync(Guid id);
     }
 }
