@@ -51,7 +51,7 @@ namespace Api.Controllers
             return Ok(response);
         }
 
-        [HttpOptions("search")]
+        [HttpPost("search")]
         public async Task<IActionResult> SearchAsync([FromBody] SearchRequest request)
         {
             var response = await mediator.Send(request);

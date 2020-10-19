@@ -1,3 +1,4 @@
+using Api.Options;
 using Api.ServiceInstallers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,7 +28,16 @@ namespace Api
             {
                 app.UseDeveloperExceptionPage();
             }
+            
+            var swaggerOptions = new SwaggerOptions();
+            configuration.GetSection(nameof(SwaggerOptions)).Bind(swaggerOptions);
 
+            app.UseSwagger(options => { options.RouteTemplate = swaggerOptions.JsonRoute; });
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint(swaggerOptions.UiEndpoint, swaggerOptions.Description);
+            });
+            
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
