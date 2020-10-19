@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Api.UseCases.Abstractions;
 
-namespace Api.Storage.Abstractions
+namespace Api.UseCases.Abstractions
 {
     public interface DeleteForm
     {

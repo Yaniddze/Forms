@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using Api.Domain;
-using Api.Storage.Abstractions;
 using Api.Storage.DbEntities;
 using Api.UseCases.Abstractions;
 using AutoMapper;
