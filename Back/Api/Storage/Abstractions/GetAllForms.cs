@@ -7,6 +7,6 @@ namespace Api.Storage.Abstractions
 {
     public interface GetAllForms
     {
-        Task<AbstractAnswer<IEnumerable<Form>>> HandleAsync();
+        Task<AbstractAnswer<IEnumerable<Form>>> HandleAsync(int count, int offset);
     }
 }
