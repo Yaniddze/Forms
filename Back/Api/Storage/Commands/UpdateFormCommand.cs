@@ -7,6 +7,6 @@ namespace Api.Storage.Commands
 {
     public class UpdateFormCommand: IRequest<AbstractAnswer<Form>>
     {
-        public IEnumerable<object> Fields { get; set; }
+        public IEnumerable<Field> Fields { get; set; }
     }
 }
