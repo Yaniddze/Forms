@@ -14,7 +14,7 @@ namespace Api.ServiceInstallers.Services
             services.AddScoped<DeleteForm, DeleteFormHandler>();
             services.AddScoped<CreateForm, CreateFormHandler>();
             services.AddScoped<SearchQuery, SearchQueryHandler>();
-            services.AddScoped<ConvertObject, ConvertObjectHandler>();
+            services.AddScoped<GetObjectKeys, GetObjectsKeysHandler>();
         }
     }
 }

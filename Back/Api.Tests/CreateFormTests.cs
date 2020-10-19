@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using Api.Infostructure.Handlers;
-using Api.UseCases.CreateForm;
 using Xunit;
 
 namespace Api.Tests
@@ -10,8 +9,6 @@ namespace Api.Tests
         [Fact]
         public void test_1()
         {
-            var ins = new CreateFormUseCase(null, new ConvertObjectHandler());
-
             object obj = new[]
             {
                 new
@@ -28,7 +25,7 @@ namespace Api.Tests
                 }
             };
 
-            var keys = ins.GetKeywords(obj);
+            var keys = new GetObjectsKeysHandler().Handle(obj);
 
             Assert.True(keys.Length == 12);
             Assert.True(keys.Contains("5567"));
