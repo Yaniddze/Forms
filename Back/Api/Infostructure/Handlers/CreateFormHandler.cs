@@ -25,6 +25,7 @@ namespace Api.Infostructure.Handlers
                 context.Forms.Add(new FormDB
                 {
                     Id = formGuid,
+                    Fields = fields,
                     Keywords = keywords,
                 });
 

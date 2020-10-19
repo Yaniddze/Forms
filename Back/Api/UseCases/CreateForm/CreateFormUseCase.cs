@@ -21,7 +21,7 @@ namespace Api.UseCases.CreateForm
         {
             var keywords = keysGetter.Handle(request.Fields);
             
-            var created = await formCreator.HandleAsync(request.Fields, keywords);
+            var created = await formCreator.HandleAsync(request.Fields.ToString(), keywords);
             
             return created;
         }

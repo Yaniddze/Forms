@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Api.UseCases.CreateForm;
 using Api.UseCases.DeleteForm;
@@ -37,27 +39,46 @@ namespace Api.Controllers
         }
 
         [HttpPut("create")]
-        public async Task<IActionResult> CreateFormAsync([FromBody] CreateFormRequest request)
+        public async Task<IActionResult> CreateFormAsync([FromBody] JsonElement fields)
         {
             if (!ModelState.IsValid)
             {
                 return Ok(CreateFailed(GetModelStateErrors()));
             }
 
-            var response = await mediator.Send(request);
+            var stringFields = fields.ToString();
+            if (String.IsNullOrEmpty(stringFields) || stringFields.Equals("{}"))
+            {
+                return Ok(CreateFailed(new[] {"Body must contain something"}));
+            }
+
+            var response = await mediator.Send(new CreateFormRequest
+            {
+                Fields = fields.ToString()
+            });
 
             return Ok(response);
         }
 
         [HttpPatch("update")]
-        public async Task<IActionResult> UpdateFormAsync([FromBody] UpdateFormRequest request)
+        public async Task<IActionResult> UpdateFormAsync([FromBody] UpdateFormControllerRequest request)
         {
             if (!ModelState.IsValid)
             {
                 return Ok(CreateFailed(GetModelStateErrors()));
             }
 
-            var response = await mediator.Send(request);
+            var stringFields = request.Fields.ToString();
+            if (String.IsNullOrEmpty(stringFields) || stringFields.Equals("{}"))
+            {
+                return Ok(CreateFailed(new[] {"'fields' must contain something"}));
+            }
+
+            var response = await mediator.Send(new UpdateFormRequest
+            {
+                Id = request.Id,
+                Fields = request.Fields.ToString(),
+            });
 
             return Ok(response);
         }
