@@ -35,6 +35,8 @@ namespace Api.Storage.Handlers
                     Fields = mappedFields,
                     Keywords = keywords,
                 });
+
+                await context.SaveChangesAsync();
             
                 return CreateSuccess(tempGuid);
             }
