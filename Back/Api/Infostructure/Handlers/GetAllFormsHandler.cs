@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Api.DataBase;
+using Api.DataBase.DbEntities;
 using Api.Domain;
-using Api.Storage.DbEntities;
 using Api.UseCases.Abstractions;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using static Api.UseCases.Abstractions.AbstractAnswer<System.Collections.Generic.IEnumerable<Api.Domain.Form>>;
 
-namespace Api.Storage.Handlers
+namespace Api.Infostructure.Handlers
 {
     public class GetAllFormsHandler: GetAllForms
     {

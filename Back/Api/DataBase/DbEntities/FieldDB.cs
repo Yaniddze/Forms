@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Api.Storage.DbEntities
+namespace Api.DataBase.DbEntities
 {
     public class FieldDB
     {

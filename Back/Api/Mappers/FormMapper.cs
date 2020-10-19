@@ -1,6 +1,6 @@
-﻿using Api.Domain;
+﻿using Api.DataBase.DbEntities;
+using Api.Domain;
 using Api.Mappers.Abstractions;
-using Api.Storage.DbEntities;
 using AutoMapper;
 
 namespace Api.Mappers

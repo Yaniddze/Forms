@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Api.Storage.DbEntities
+namespace Api.DataBase.DbEntities
 {
     public class FormDB
     {

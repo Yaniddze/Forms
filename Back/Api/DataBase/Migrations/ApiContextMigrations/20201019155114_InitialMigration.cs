@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Api.Storage.Migrations.ApiContextMigrations
+namespace Api.DataBase.Migrations.ApiContextMigrations
 {
     public partial class InitialMigration : Migration
     {

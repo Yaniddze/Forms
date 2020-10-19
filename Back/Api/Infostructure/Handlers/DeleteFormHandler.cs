@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Api.DataBase;
 using Api.UseCases.Abstractions;
 using Z.EntityFramework.Plus;
 using static Api.UseCases.Abstractions.AbstractAnswer<System.Guid>;
 
-namespace Api.Storage.Handlers
+namespace Api.Infostructure.Handlers
 {
     public class DeleteFormHandler: DeleteForm
     {

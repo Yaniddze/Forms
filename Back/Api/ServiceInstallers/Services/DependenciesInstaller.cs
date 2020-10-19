@@ -1,4 +1,4 @@
-﻿using Api.Storage.Handlers;
+﻿using Api.Infostructure.Handlers;
 using Api.UseCases.Abstractions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

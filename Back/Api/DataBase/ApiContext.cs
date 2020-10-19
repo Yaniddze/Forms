@@ -1,8 +1,8 @@
-﻿using Api.Storage.DbEntities;
+﻿using Api.DataBase.DbEntities;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
-namespace Api.Storage
+namespace Api.DataBase
 {
     public class ApiContext: DbContext
     {
