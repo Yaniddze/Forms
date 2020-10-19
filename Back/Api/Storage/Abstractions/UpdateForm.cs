@@ -6,6 +6,6 @@ namespace Api.Storage.Abstractions
 {
     public interface UpdateForm
     {
-        Task<AbstractAnswer<Form>> HandleAsync();
+        Task<AbstractAnswer<Form>> HandleAsync(Form form);
     }
 }
