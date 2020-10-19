@@ -6,6 +6,6 @@ namespace Api.UseCases.Abstractions
 {
     public interface SearchQuery
     {
-        Task<AbstractAnswer<IEnumerable<Form>>> HandleAsync(string query);
+        Task<AbstractAnswer<IEnumerable<Form>>> HandleAsync(string query, int count, int offset);
     }
 }

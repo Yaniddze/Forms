@@ -22,12 +22,14 @@ namespace Api.Infostructure.Handlers
             this.context = context;
         }
 
-        public async Task<AbstractAnswer<IEnumerable<Form>>> HandleAsync(string query)
+        public async Task<AbstractAnswer<IEnumerable<Form>>> HandleAsync(string query, int count, int offset)
         {
             try
             {
                 var founded = await context.Forms
                     .Where(x => x.Keywords.Contains(query))
+                    .Take(count)
+                    .Skip(offset)
                     .Select(x => mapper.Map<FormDB, Form>(x))
                     .ToListAsync();
 
