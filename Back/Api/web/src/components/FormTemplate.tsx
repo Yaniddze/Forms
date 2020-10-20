@@ -43,7 +43,7 @@ type PropTypes = {
   item: FormType;
 }
 
-export const UpdateFormTemplate: FC<PropTypes> = (
+export const FormTemplate: FC<PropTypes> = (
   { item }: PropTypes,
 ) => {
   const keys = Object.keys(item.fields);

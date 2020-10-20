@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { UpdateFormTemplate } from '../components/UpdateFormTemplate';
+import { FormTemplate } from '../components/FormTemplate';
 import { Form, ManySelect } from '../domain/types';
 
 type PropTypes = {
@@ -8,9 +8,9 @@ type PropTypes = {
 }
 
 export const FormsPage: FC<PropTypes> = () => {
-  const radioField = new ManySelect();
-  radioField.selected = ['123'];
-  radioField.values = ['123', '321', '223'];
+  const manySelect = new ManySelect();
+  manySelect.selected = ['123'];
+  manySelect.values = ['123', '321', '223'];
 
   const item: Form = {
     id: '123321',
@@ -19,13 +19,13 @@ export const FormsPage: FC<PropTypes> = () => {
       field2: 123321,
       field3: '123321',
       filed4: true,
-      filed5: radioField,
+      filed5: manySelect,
     },
   };
 
   return (
     <div>
-      <UpdateFormTemplate item={item} />
+      <FormTemplate item={item} />
     </div>
   );
 };
