@@ -1,17 +1,15 @@
 import React, { FC } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { GlobalStyles } from './appSetup';
-
-import { Header } from './components/header';
+import { 
+  GlobalStyles,
+  Routes,
+} from './appSetup';
 
 export const App: FC = () => (
   <div>
     <GlobalStyles />
-    <div>
-      <Header />
-    </div>
-    Hello!
+    <Routes />
   </div>
 );
 

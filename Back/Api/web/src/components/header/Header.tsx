@@ -1,3 +1,4 @@
+// Core
 import React, { FC } from 'react';
 import styled from 'styled-components';
 import { Form, Button } from 'react-bootstrap';
@@ -14,7 +15,11 @@ const Wrapper = styled.div`
   }
 `;
 
-export const Header: FC = () => {
+type PropTypes = {
+  children?: never;
+}
+
+export const Header: FC<PropTypes> = () => {
   return (
     <Wrapper>
       <Form.Control
