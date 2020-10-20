@@ -1,15 +1,24 @@
+// Core
 import React, { 
-  ChangeEvent, 
   FC, 
   ReactElement, 
   useState,
 } from 'react';
 import styled from 'styled-components';
-import { Button, Form } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
+// Domain
 import { GetFieldType } from '../domain';
+import { Form as FormType, ManySelect } from '../domain/types';
 
-import { Form as FormType } from '../domain/types';
+// Field components
+import { 
+  BooleanField, 
+  DateField,
+  NumberField,
+  TextField,
+  RadioField,
+} from './fields';
 
 const Wrapper = styled.div`
   display: flex;
@@ -45,15 +54,6 @@ export const UpdateFormTemplate: FC<PropTypes> = (
   });
 
   const [values, setValues] = useState(initialObject);
-  
-  const handleChange = (name: string, value: unknown) => {
-    if (name !== null && value !== null) {
-      setValues((old: any) => ({
-        ...old,
-        [name]: value,
-      }));
-    }
-  };
 
   const inputs = keys.map((key) => {
     const field: any = item.fields[key];
@@ -64,8 +64,9 @@ export const UpdateFormTemplate: FC<PropTypes> = (
     switch (fieldType.title) {
       case 'boolean':
         itemInput = (
-          <Form.Check
+          <BooleanField 
             checked={values[key]}
+            label={key}
             onChange={() => {
               setValues((old: any) => ({
                 ...old,
@@ -78,11 +79,14 @@ export const UpdateFormTemplate: FC<PropTypes> = (
 
       case 'date':
         itemInput = (
-          <Form.Control
-            type="date"
-            value={values[key]}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => {
-              handleChange(key, e.target.value); 
+          <DateField 
+            label={key}
+            value={values[key] as Date}
+            onChange={(newDate: Date) => {
+              setValues((old: any) => ({
+                ...old,
+                [key]: newDate,
+              }));
             }}
           />
         );
@@ -90,11 +94,14 @@ export const UpdateFormTemplate: FC<PropTypes> = (
       
       case 'number':
         itemInput = (
-          <Form.Control
-            type="number"
+          <NumberField 
+            label={key}
             value={values[key]}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => {
-              handleChange(key, e.target.value); 
+            onChange={(newValue: number) => {
+              setValues((old: any) => ({
+                ...old,
+                [key]: newValue,
+              }));
             }}
           />
         );
@@ -102,11 +109,14 @@ export const UpdateFormTemplate: FC<PropTypes> = (
       
       case 'text':
         itemInput = (
-          <Form.Control
-            type="text"
+          <TextField
             value={values[key]}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => {
-              handleChange(key, e.target.value); 
+            label={key}
+            onChange={(newValue: string) => {
+              setValues((old: any) => ({
+                ...old,
+                [key]: newValue,
+              }));
             }}
           />
         );
@@ -114,11 +124,14 @@ export const UpdateFormTemplate: FC<PropTypes> = (
       
       case 'radio':
         itemInput = (
-          <Form.Control
-            type="text"
-            value={values[key]}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => {
-              handleChange(key, e.target.value); 
+          <RadioField 
+            label={key}
+            value={values[key] as ManySelect}
+            onChange={(newValue: ManySelect) => {
+              setValues((old: any) => ({
+                ...old,
+                [key]: newValue,
+              }));
             }}
           />
         );
@@ -129,10 +142,9 @@ export const UpdateFormTemplate: FC<PropTypes> = (
     }
 
     return (
-      <Form.Group key={key}>
-        <Form.Label>{key}</Form.Label>
+      <div key={key}>
         {itemInput}
-      </Form.Group>
+      </div>
     );
   });
 

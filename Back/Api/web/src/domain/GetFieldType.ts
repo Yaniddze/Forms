@@ -5,7 +5,7 @@ import {
   NumberFieldTypeTitle,
   TextFieldTypeTitle,
   RadioFieldTypeTitle,
-  RadioField,
+  ManySelect,
 } from './types';
 
 export function GetFieldType(value: any): AvalibleTypes {
@@ -13,7 +13,7 @@ export function GetFieldType(value: any): AvalibleTypes {
   if (typeof value === 'number') return { title: NumberFieldTypeTitle };
   if (typeof value === 'string') return { title: TextFieldTypeTitle };
   if (value instanceof Date) return { title: DateFieldTypeTitle };
-  if (value instanceof RadioField) return { title: RadioFieldTypeTitle };
+  if (value instanceof ManySelect) return { title: RadioFieldTypeTitle };
 
   return { title: TextFieldTypeTitle };
 }

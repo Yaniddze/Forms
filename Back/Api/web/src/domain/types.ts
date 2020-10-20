@@ -3,15 +3,10 @@ export type Form = {
   fields: Record<string, unknown>;
 }
 
-export class RadioField {
-  public values: string[];
+export class ManySelect {
+  values: string[] = [];
 
-  public selected: string[];
-
-  constructor(values: string[], selected: string[]) {
-    this.selected = selected;
-    this.values = values;
-  }
+  selected: string[] = [];
 }
 
 export const BooleanFieldTypeTitle = 'boolean';
