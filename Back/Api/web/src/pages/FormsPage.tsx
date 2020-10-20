@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { FormTemplate } from '../components/FormTemplate';
+import { UpdateFormTemplate } from '../components/UpdateFormTemplate';
 import { Form } from '../domain/types';
 
 type PropTypes = {
@@ -14,12 +14,13 @@ export const FormsPage: FC<PropTypes> = () => {
       field1: new Date(),
       field2: 123321,
       field3: '123321',
+      filed4: true,
     },
   };
 
   return (
     <div>
-      <FormTemplate item={item} />
+      <UpdateFormTemplate item={item} />
     </div>
   );
 };
