@@ -3,6 +3,7 @@ import {
   AvalibleTypes as AvailableTypesType,
 } from './types';
 
+export * from './validations';
 export { GetFieldType } from './GetFieldType';
 export { 
   TextFieldTitle,

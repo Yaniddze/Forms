@@ -1,0 +1,1 @@
+export { TitleValidation } from './DeclarationValidations';
