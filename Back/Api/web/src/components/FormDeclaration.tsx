@@ -233,7 +233,7 @@ export const FormDeclaration: FC<PropTypes> = () => {
     );
   });
 
-  console.log(fields);
+  const nextDisabled = fields.length === 0 || fields.find((field) => !field.valid) !== undefined;  
 
   return (
     <Wrapper>
@@ -264,7 +264,7 @@ export const FormDeclaration: FC<PropTypes> = () => {
       <RightWrapper>
         <Button 
           onClick={handleSubmit}
-          disabled={fields.length === 0}
+          disabled={nextDisabled}
         >
           Далее
         </Button>

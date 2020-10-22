@@ -99,11 +99,14 @@ export const ManyFieldDeclaration: FC<PropTypes> = (
 
   const handleDeleteClick = (e: MouseEvent, index: number): void => {
     e.preventDefault();
+    const newValues = value.values.filter((_, innerIndex) => innerIndex !== index);
 
     onValueChange({
       ...value,
-      values: value.values.filter((_, innerIndex) => innerIndex !== index),
+      values: newValues,
     });
+
+    onValidChange(getValidationValue(newValues));
   };
 
   const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => { 
