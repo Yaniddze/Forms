@@ -86,6 +86,7 @@ type Field = {
   id: number;
   title: string;
   type: AvalibleTypes;
+  valid: boolean;
   value: any;
 };
 
@@ -110,6 +111,7 @@ export const FormDeclaration: FC<PropTypes> = () => {
         title: '',
         type: selectedType,
         value: null,
+        valid: false,
       },
     ]));
 
@@ -159,6 +161,22 @@ export const FormDeclaration: FC<PropTypes> = () => {
     fields.forEach((field) => {
       result.fields[field.title] = field.value;
     });
+
+    console.log(fields);
+    
+  };
+
+  const handleValidChange = (id: number, newValue: boolean): void => {
+    setFields((old: Field[]) => old.map((mappedField: Field) => {
+      if (mappedField.id === id) {
+        return {
+          ...mappedField,
+          valid: newValue,
+        };
+      }
+
+      return mappedField;
+    }));
   };
 
   const fieldsToRender = fields.map((field) => { 
@@ -172,6 +190,9 @@ export const FormDeclaration: FC<PropTypes> = () => {
       value: field.value,
       onValueChange: (newValue: any): void => {
         handleValueChange(field.id, newValue);
+      },
+      onValidChange: (newValue: boolean): void => {
+        handleValidChange(field.id, newValue);
       },
     };
 
