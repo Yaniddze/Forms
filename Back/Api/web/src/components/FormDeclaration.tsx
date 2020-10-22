@@ -21,6 +21,7 @@ import {
   ManySelectTitle,
   NumberFieldTitle,
   AvalibleTypes,
+  Form as FormType,
 } from '../domain';
 
 // Fields
@@ -66,6 +67,14 @@ const FieldWrapper = styled.div`
   > *:first-child {
     width: 100%;
     margin-right: 50px;
+  }
+`;
+
+const RightWrapper = styled.div`
+  display: flex;
+
+  > * {
+    margin-left: auto;
   }
 `;
 
@@ -137,6 +146,19 @@ export const FormDeclaration: FC<PropTypes> = () => {
     e.preventDefault();
 
     setFields((old: Field[]) => old.filter((fieldFilter: Field) => fieldFilter.id !== id));
+  };
+
+  const handleSubmit = (e: MouseEvent): void => {
+    e.preventDefault();
+
+    const result: FormType = {
+      id: '',
+      fields: {},
+    };
+
+    fields.forEach((field) => {
+      result.fields[field.title] = field.value;
+    });
   };
 
   const fieldsToRender = fields.map((field) => { 
@@ -219,11 +241,14 @@ export const FormDeclaration: FC<PropTypes> = () => {
         {fieldsToRender}
       </div>
 
-      <div>
-        <Button>
+      <RightWrapper>
+        <Button 
+          onClick={handleSubmit}
+          disabled={fields.length === 0}
+        >
           Далее
         </Button>
-      </div>
+      </RightWrapper>
 
     </Wrapper>
   );
