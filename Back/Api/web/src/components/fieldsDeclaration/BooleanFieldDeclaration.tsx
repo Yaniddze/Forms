@@ -5,6 +5,8 @@ import React, {
 } from 'react';
 import { Form } from 'react-bootstrap';
 
+import { TitleValidation } from '../../domain';
+
 type PropTypes = {
   children?: never;
   title: string;
@@ -27,29 +29,27 @@ export const BooleanFieldDeclaration: FC<PropTypes> = (
     onValidChange(false);
   }, []);
 
-  const checkValid = (value: string) => value.length > 2;
-
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => { 
     if (e.target.value !== null) {
       onTitleChange(e.target.value);
-      onValidChange(checkValid(e.target.value));
+      onValidChange(TitleValidation(e.target.value).valid);
     }
   };
 
-  const vaild = checkValid(title);
+  const { valid, message } = TitleValidation(title);
 
   return (
     <Form.Group>
       <Form.Label>Boolean. Название:</Form.Label>
       <Form.Control 
-        isInvalid={!vaild}
-        isValid={vaild}
+        isInvalid={!valid}
+        isValid={valid}
         type="text"
         value={title}
         onChange={handleChange}
       />
       <Form.Control.Feedback type="invalid">
-        Минимум 3 символа
+        {message}
       </Form.Control.Feedback>
     </Form.Group>
   );

@@ -161,9 +161,6 @@ export const FormDeclaration: FC<PropTypes> = () => {
     fields.forEach((field) => {
       result.fields[field.title] = field.value;
     });
-
-    console.log(fields);
-    
   };
 
   const handleValidChange = (id: number, newValue: boolean): void => {
