@@ -1,6 +1,6 @@
 import { 
   Form as FormType,
-  ManySelect as ManySelectType, 
+  AvalibleTypes as AvailableTypesType,
 } from './types';
 
 export { GetFieldType } from './GetFieldType';
@@ -10,7 +10,8 @@ export {
   DateFieldTitle,
   ManySelectTitle,
   NumberFieldTitle,
+  ManySelect, 
 } from './types';
 
 export type Form = FormType;
-export type ManySelect = ManySelectType;
+export type AvalibleTypes = AvailableTypesType;

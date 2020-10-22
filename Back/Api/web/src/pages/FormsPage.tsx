@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
 
 import { FormTemplate } from '../components/FormTemplate';
+import { FormDeclaration } from '../components/FormDeclaration';
+
 import { Form, ManySelect } from '../domain/types';
 
 type PropTypes = {
@@ -25,7 +27,7 @@ export const FormsPage: FC<PropTypes> = () => {
 
   return (
     <div>
-      <FormTemplate item={item} />
+      <FormDeclaration />
     </div>
   );
 };
