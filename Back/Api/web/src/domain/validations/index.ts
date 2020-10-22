@@ -1,1 +1,4 @@
-export { TitleValidation } from './DeclarationValidations';
+export { 
+  TitleValidation,
+  ManyFieldItemValidation, 
+} from './DeclarationValidations';

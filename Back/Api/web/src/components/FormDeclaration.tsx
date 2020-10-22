@@ -233,6 +233,8 @@ export const FormDeclaration: FC<PropTypes> = () => {
     );
   });
 
+  console.log(fields);
+
   return (
     <Wrapper>
       

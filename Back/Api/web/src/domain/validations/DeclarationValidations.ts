@@ -11,3 +11,12 @@ export function TitleValidation(title: string): ReturnType {
     message: valid ? '' : 'Минимум 3 символа',
   };
 }
+
+export function ManyFieldItemValidation(item: string): ReturnType {
+  const valid = item.length > 2;
+  
+  return {
+    valid,
+    message: valid ? '' : 'Минимум 3 символа',
+  };
+}
