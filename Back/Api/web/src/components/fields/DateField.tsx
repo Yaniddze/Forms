@@ -28,4 +28,4 @@ export const DateField: FC<PropTypes> = (
       />
     </Form.Group>
   );
-}
+};

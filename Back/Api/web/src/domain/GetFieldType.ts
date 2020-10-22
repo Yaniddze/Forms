@@ -1,19 +1,12 @@
-import { 
-  AvalibleTypes,
-  BooleanFieldTypeTitle,
-  DateFieldTypeTitle,
-  NumberFieldTypeTitle,
-  TextFieldTypeTitle,
-  RadioFieldTypeTitle,
-  ManySelect,
-} from './types';
+import { AvalibleTypes, TextFieldTitle } from './types';
+import { TypeCheckers } from './TypeCheckers';
 
 export function GetFieldType(value: any): AvalibleTypes {
-  if (typeof value === 'boolean') return { title: BooleanFieldTypeTitle };
-  if (typeof value === 'number') return { title: NumberFieldTypeTitle };
-  if (typeof value === 'string') return { title: TextFieldTypeTitle };
-  if (value instanceof Date) return { title: DateFieldTypeTitle };
-  if (value instanceof ManySelect) return { title: RadioFieldTypeTitle };
+  for (let index = 0; index < TypeCheckers.length; index++) {
+    const { check, type } = TypeCheckers[index];
+    
+    if (check(value)) return type;
+  }
 
-  return { title: TextFieldTypeTitle };
+  return TextFieldTitle;
 }

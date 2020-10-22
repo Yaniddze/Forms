@@ -8,8 +8,16 @@ import styled from 'styled-components';
 import { Button } from 'react-bootstrap';
 
 // Domain
-import { GetFieldType } from '../domain';
-import { Form as FormType, ManySelect } from '../domain/types';
+import { 
+  GetFieldType,
+  Form as FormType, 
+  ManySelect,  
+  BooleanFieldTitle,
+  DateFieldTitle,
+  TextFieldTitle,
+  ManySelectTitle,
+  NumberFieldTitle,
+} from '../domain';
 
 // Field components
 import { 
@@ -61,8 +69,8 @@ export const FormTemplate: FC<PropTypes> = (
 
     let itemInput: ReactElement = <div />;
 
-    switch (fieldType.title) {
-      case 'boolean':
+    switch (fieldType) {
+      case BooleanFieldTitle:
         itemInput = (
           <BooleanField 
             checked={values[key]}
@@ -77,7 +85,7 @@ export const FormTemplate: FC<PropTypes> = (
         );
         break;
 
-      case 'date':
+      case DateFieldTitle:
         itemInput = (
           <DateField 
             label={key}
@@ -92,7 +100,7 @@ export const FormTemplate: FC<PropTypes> = (
         );
         break;
       
-      case 'number':
+      case TextFieldTitle:
         itemInput = (
           <NumberField 
             label={key}
@@ -107,7 +115,7 @@ export const FormTemplate: FC<PropTypes> = (
         );
         break;
       
-      case 'text':
+      case NumberFieldTitle:
         itemInput = (
           <TextField
             value={values[key]}
@@ -122,7 +130,7 @@ export const FormTemplate: FC<PropTypes> = (
         );
         break;
       
-      case 'radio':
+      case ManySelectTitle:
         itemInput = (
           <RadioField 
             label={key}

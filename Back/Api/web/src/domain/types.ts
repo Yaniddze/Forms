@@ -9,39 +9,24 @@ export class ManySelect {
   selected: string[] = [];
 }
 
-export const BooleanFieldTypeTitle = 'boolean';
+export const BooleanFieldTitle = 'boolean';
 
-type BooleanFieldType = {
-  title: typeof BooleanFieldTypeTitle;
-};
+export const NumberFieldTitle = 'number';
 
-export const NumberFieldTypeTitle = 'number';
+export const DateFieldTitle = 'date';
 
-type NumberFieldType = {
-  title: typeof NumberFieldTypeTitle;
-};
+export const ManySelectTitle = 'many'; 
 
-export const DateFieldTypeTitle = 'date';
-
-type DateFieldType = {
-  title: typeof DateFieldTypeTitle;
-};
-
-export const RadioFieldTypeTitle = 'radio'; 
-
-type RadioFieldType = {
-  title: typeof RadioFieldTypeTitle;
-};
-
-export const TextFieldTypeTitle = 'text';
-
-type TextFieldType = {
-  title: typeof TextFieldTypeTitle;
-};
+export const TextFieldTitle = 'text';
 
 export type AvalibleTypes = 
-  | BooleanFieldType
-  | NumberFieldType
-  | DateFieldType
-  | RadioFieldType
-  | TextFieldType;
+  | typeof BooleanFieldTitle
+  | typeof NumberFieldTitle
+  | typeof DateFieldTitle
+  | typeof ManySelectTitle
+  | typeof TextFieldTitle;
+
+export type TypeChecker = {
+  type: AvalibleTypes,
+  check: (value: any) => boolean;
+};
