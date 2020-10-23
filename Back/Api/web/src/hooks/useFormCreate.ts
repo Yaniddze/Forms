@@ -1,19 +1,23 @@
+// Core
 import { 
   useContext, 
   useState,
 } from 'react';
 
+// Dependencies
 import {
   SaveFormContext,
 } from '../dependencies';
 
-import {
-  StorageAnswer,
-} from '../storage/types';
+// Hooks
+import { useFormsState } from './state';
 
 type Answer = {
-  fetching: boolean,
-  value: StorageAnswer<string>
+  fetching: boolean;
+  value: {
+    success: boolean;
+    errors: string[];
+  };
 };
 
 type ReturnType = {
@@ -27,12 +31,12 @@ const initialState: Answer = {
   value: {
     success: false,
     errors: [],
-    data: '',
   },
 };
 
 export const useFormCreate = (): ReturnType => {
   const [answer, setAnswer] = useState<Answer>(initialState);
+  const { addForm } = useFormsState();
   const unit = useContext(SaveFormContext);
 
   const fetch = (fields: Record<string, unknown>) => {
@@ -43,6 +47,13 @@ export const useFormCreate = (): ReturnType => {
 
     unit.Handle(fields)
       .then((response) => {
+        if (response.success) {
+          addForm({
+            id: response.data,
+            fields,
+          });
+        }
+
         setAnswer(() => ({
           fetching: false,
           value: response,
