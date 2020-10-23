@@ -22,11 +22,11 @@ export interface DeleteForm {
 }
 
 export interface GetForms {
-  Handle(count: number, offset: number): Promise<Form[]>;
+  Handle(count: number, offset: number): Promise<StorageAnswer<Form[]>>;
   Cancel(): void;
 }
 
 export interface Search {
-  Handle(query: string, count: number, offset: number): Promise<Form[]>;
+  Handle(query: string, count: number, offset: number): Promise<StorageAnswer<Form[]>>;
   Cancel(): void;
 }
