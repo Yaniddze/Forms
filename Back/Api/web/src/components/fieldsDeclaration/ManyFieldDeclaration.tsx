@@ -78,10 +78,11 @@ export const ManyFieldDeclaration: FC<PropTypes> = (
       return item;
     });
 
-    onValueChange({
-      ...value,
-      values: newValues,
-    });
+    const newObject = new ManySelect();
+
+    newObject.values = newValues;
+
+    onValueChange(newObject);
 
     onValidChange(getValidationValue(newValues));
   };
@@ -89,10 +90,11 @@ export const ManyFieldDeclaration: FC<PropTypes> = (
   const handleAdditionClick = (e: MouseEvent): void => {
     e.preventDefault();
 
-    onValueChange({
-      ...value,
-      values: [...value.values, ''],
-    });
+    const newObject = new ManySelect();
+
+    newObject.values = [...value.values, ''];
+
+    onValueChange(newObject);
 
     onValidChange(false);
   };
@@ -101,10 +103,11 @@ export const ManyFieldDeclaration: FC<PropTypes> = (
     e.preventDefault();
     const newValues = value.values.filter((_, innerIndex) => innerIndex !== index);
 
-    onValueChange({
-      ...value,
-      values: newValues,
-    });
+    const newObject = new ManySelect();
+
+    newObject.values = newValues;
+
+    onValueChange(newObject);
 
     onValidChange(getValidationValue(newValues));
   };
