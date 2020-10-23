@@ -53,7 +53,7 @@ type PropTypes = {
   onSubmit: (form: FormType) => void;
 }
 
-export const FormTemplate: FC<PropTypes> = (
+export const FormUpdateTemplate: FC<PropTypes> = (
   { item, onSubmit }: PropTypes,
 ) => {
   const keys = Object.keys(item.fields);

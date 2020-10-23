@@ -12,7 +12,7 @@ import {
 } from 'react-bootstrap';
 
 // Templates
-import { FormTemplate } from '../components/FormTemplate';
+import { FormUpdateTemplate } from '../components/FormUpdateTemplate';
 import { FormDeclaration } from '../components/FormDeclaration';
 
 // Hooks
@@ -98,7 +98,7 @@ export const FormsPage: FC<PropTypes> = () => {
         show={selectedForm !== undefined}
         onHide={handleModalUpdateHide}
       >
-        <FormTemplate 
+        <FormUpdateTemplate 
           onSubmit={handleUpdateSubmit}
           item={selectedForm as Form || { id: '', fields: {} }} 
         />
