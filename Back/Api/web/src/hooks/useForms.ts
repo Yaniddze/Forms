@@ -1,22 +1,24 @@
+// Core
 import { 
   useContext, 
   useState,
   useEffect, 
 } from 'react';
 
+// Dependencies
 import {
   GetFormsContext,
 } from '../dependencies';
 
+// Hooks
+import { useFormsState } from './state';
+
+// Types
 import { Form } from '../domain/types';
 
-import {
-  StorageAnswer,
-} from '../storage/types';
-
 type Answer = {
-  fetching: boolean,
-  value: StorageAnswer<Form[]>
+  fetching: boolean;
+  value: Form[];
 };
 
 type ReturnType = {
@@ -24,42 +26,32 @@ type ReturnType = {
   cancel: () => void;
 }
 
-const initialState: Answer = {
-  fetching: false,
-  value: {
-    success: false,
-    errors: [],
-    data: [],
-  },
-};
-
 export const useForms = (): ReturnType => {
-  const [answer, setAnswer] = useState<Answer>(initialState);
+  const [fetching, setFetching] = useState(false);
+  const { forms, setForms } = useFormsState();
   const unit = useContext(GetFormsContext);
 
   useEffect(() => {
-    setAnswer((old: Answer) => ({
-      ...old,
-      fetching: true,
-    }));
+    setFetching(true);
 
     unit.Handle(10, 0)
       .then((response) => {
-        setAnswer(() => ({
-          fetching: false,
-          value: response,
-        }));
+        setFetching(false);
+        setForms(response.data);
       });
   }, []);
 
   const handleCancel = () => {
-    if (answer.fetching) {
+    if (fetching) {
       unit.Cancel();
     }
   };
 
   return {
-    state: answer,
+    state: {
+      fetching,
+      value: forms,
+    },
     cancel: handleCancel,
   };
 };
