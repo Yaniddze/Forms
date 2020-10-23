@@ -3,6 +3,7 @@ import React, {
   FC, 
   ReactElement, 
   useState,
+  MouseEvent,
 } from 'react';
 import styled from 'styled-components';
 import { Button } from 'react-bootstrap';
@@ -49,10 +50,11 @@ const ButtonHolder = styled.div`
 type PropTypes = {
   children?: never;
   item: FormType;
+  onSubmit: (form: FormType) => void;
 }
 
 export const FormTemplate: FC<PropTypes> = (
-  { item }: PropTypes,
+  { item, onSubmit }: PropTypes,
 ) => {
   const keys = Object.keys(item.fields);
   const initialObject: any = {};
@@ -62,6 +64,15 @@ export const FormTemplate: FC<PropTypes> = (
   });
 
   const [values, setValues] = useState(initialObject);
+
+  const handleSubmit = (e: MouseEvent): void => {
+    e.preventDefault();
+
+    onSubmit({
+      id: item.id,
+      fields: values,
+    });
+  };
 
   const inputs = keys.map((key) => {
     const field: any = item.fields[key];
@@ -161,7 +172,7 @@ export const FormTemplate: FC<PropTypes> = (
       <div>
         {inputs}
         <ButtonHolder>
-          <Button>
+          <Button onClick={handleSubmit}>
             Обновить
           </Button>
         </ButtonHolder>
