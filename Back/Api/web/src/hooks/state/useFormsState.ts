@@ -9,28 +9,28 @@ class Storage {
   public Forms: Form[] = [];
 
   constructor() {
-    makeObservable({
-      forms: observable,
-      setForms: action,
-      addForm: action,
-      deleteForm: action,
-      updateForm: action,
+    makeObservable(this, {
+      Forms: observable,
+      SetForms: action,
+      AddForm: action,
+      DeleteForm: action,
+      UpdateForm: action,
     });
   }
 
-  public setForms(forms: Form[]): void {
+  public SetForms(forms: Form[]): void {
     this.Forms = forms;
   }
 
-  public addForm(form: Form): void {
+  public AddForm(form: Form): void {
     this.Forms.push(form);
   }
 
-  public deleteForm(id: string): void {
+  public DeleteForm(id: string): void {
     this.Forms = this.Forms.filter((form) => form.id !== id);
   }
 
-  public updateForm(form: Form): void {
+  public UpdateForm(form: Form): void {
     this.Forms = this.Forms.map((mappedForm) => {
       if (mappedForm.id === form.id) {
         return form;
@@ -53,8 +53,8 @@ type ReturnType = {
 
 export const useFormsState = (): ReturnType => ({
   forms: storage.Forms,
-  setForms: storage.setForms,
-  addForm: storage.addForm,
-  deleteForm: storage.deleteForm,
-  updateForm: storage.updateForm,
+  setForms: storage.SetForms.bind(storage),
+  addForm: storage.AddForm.bind(storage),
+  deleteForm: storage.DeleteForm.bind(storage),
+  updateForm: storage.UpdateForm.bind(storage),
 });
