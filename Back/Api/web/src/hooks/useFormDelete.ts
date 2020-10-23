@@ -1,19 +1,23 @@
+// Core
 import { 
   useContext, 
   useState,
 } from 'react';
 
+// Dependencies
 import {
   DeleteFormContext,
 } from '../dependencies';
 
-import {
-  StorageAnswer,
-} from '../storage/types';
+// Hooks
+import { useFormsState } from './state';
 
 type Answer = {
-  fetching: boolean,
-  value: StorageAnswer<string>
+  fetching: boolean;
+  value: {
+    success: boolean;
+    errors: string[];
+  };
 };
 
 type ReturnType = {
@@ -27,12 +31,12 @@ const initialState: Answer = {
   value: {
     success: false,
     errors: [],
-    data: '',
   },
 };
 
 export const useFormDelete = (): ReturnType => {
   const [answer, setAnswer] = useState<Answer>(initialState);
+  const { deleteForm } = useFormsState();
   const unit = useContext(DeleteFormContext);
 
   const fetch = (id: string) => {
@@ -43,6 +47,10 @@ export const useFormDelete = (): ReturnType => {
 
     unit.Handle(id)
       .then((response) => {
+        if (response.success) {
+          deleteForm(response.data);
+        }
+
         setAnswer(() => ({
           fetching: false,
           value: response,
