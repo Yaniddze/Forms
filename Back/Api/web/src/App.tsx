@@ -6,10 +6,16 @@ import {
   Routes,
 } from './appSetup';
 
+import {
+  ApplicationDependecies,
+} from './dependencies';
+
 export const App: FC = () => (
   <div>
     <GlobalStyles />
-    <Routes />
+    <ApplicationDependecies>
+      <Routes />
+    </ApplicationDependecies>
   </div>
 );
 
