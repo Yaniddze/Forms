@@ -25,7 +25,7 @@ import {
   DateField,
   NumberField,
   TextField,
-  RadioField,
+  ManyField,
 } from './fields';
 
 const Wrapper = styled.div`
@@ -66,7 +66,7 @@ export const FormTemplate: FC<PropTypes> = (
   const inputs = keys.map((key) => {
     const field: any = item.fields[key];
     const fieldType = GetFieldType(field);
-
+    
     let itemInput: ReactElement = <div />;
 
     switch (fieldType) {
@@ -102,10 +102,10 @@ export const FormTemplate: FC<PropTypes> = (
       
       case TextFieldTitle:
         itemInput = (
-          <NumberField 
+          <TextField 
             label={key}
             value={values[key]}
-            onChange={(newValue: number) => {
+            onChange={(newValue: string) => {
               setValues((old: any) => ({
                 ...old,
                 [key]: newValue,
@@ -117,10 +117,10 @@ export const FormTemplate: FC<PropTypes> = (
       
       case NumberFieldTitle:
         itemInput = (
-          <TextField
+          <NumberField
             value={values[key]}
             label={key}
-            onChange={(newValue: string) => {
+            onChange={(newValue: number) => {
               setValues((old: any) => ({
                 ...old,
                 [key]: newValue,
@@ -132,7 +132,7 @@ export const FormTemplate: FC<PropTypes> = (
       
       case ManySelectTitle:
         itemInput = (
-          <RadioField 
+          <ManyField 
             label={key}
             value={values[key] as ManySelect}
             onChange={(newValue: ManySelect) => {

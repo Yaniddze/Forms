@@ -12,7 +12,7 @@ type PropTypes = {
   label: string;
 }
 
-export const RadioField: FC<PropTypes> = (
+export const ManyField: FC<PropTypes> = (
   { value, onChange, label }: PropTypes,
 ) => { 
   const handleChange = (title: string): void => {

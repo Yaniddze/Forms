@@ -80,6 +80,7 @@ const RightWrapper = styled.div`
 
 type PropTypes = {
   children?: never;
+  onSubmit: (form: FormType) => void;
 }
 
 type Field = {
@@ -90,7 +91,9 @@ type Field = {
   value: any;
 };
 
-export const FormDeclaration: FC<PropTypes> = () => { 
+export const FormDeclaration: FC<PropTypes> = (
+  { onSubmit }: PropTypes,
+) => { 
   const [selectedType, setSelectedType] = useState<AvalibleTypes>(TextFieldTitle);
   const [fields, setFields] = useState<Field[]>([]);
   const [idCounter, setIdCounter] = useState(1);
@@ -161,6 +164,8 @@ export const FormDeclaration: FC<PropTypes> = () => {
     fields.forEach((field) => {
       result.fields[field.title] = field.value;
     });
+
+    onSubmit(result);
   };
 
   const handleValidChange = (id: number, newValue: boolean): void => {
