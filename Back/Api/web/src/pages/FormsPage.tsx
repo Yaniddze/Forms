@@ -78,6 +78,8 @@ export const FormsPage: FC<PropTypes> = () => {
     setDeclarationOpen(true);
   };
 
+  const form = (selectedForm as Form);
+
   return (
     <Wrapper>
 
@@ -98,6 +100,7 @@ export const FormsPage: FC<PropTypes> = () => {
       >
         <FormUpdateTemplate 
           onSubmit={handleUpdateSubmit}
+          buttonText={form !== undefined && form.id !== '' ? 'Обновить' : 'Добавить'}
           item={selectedForm as Form || { id: '', fields: {} }} 
         />
       </Modal>

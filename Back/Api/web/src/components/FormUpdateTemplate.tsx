@@ -51,10 +51,11 @@ type PropTypes = {
   children?: never;
   item: FormType;
   onSubmit: (form: FormType) => void;
+  buttonText: string;
 }
 
 export const FormUpdateTemplate: FC<PropTypes> = (
-  { item, onSubmit }: PropTypes,
+  { item, onSubmit, buttonText }: PropTypes,
 ) => {
   const keys = Object.keys(item.fields);
   const initialObject: any = {};
@@ -173,7 +174,7 @@ export const FormUpdateTemplate: FC<PropTypes> = (
         {inputs}
         <ButtonHolder>
           <Button onClick={handleSubmit}>
-            Обновить
+            { buttonText }
           </Button>
         </ButtonHolder>
       </div>
