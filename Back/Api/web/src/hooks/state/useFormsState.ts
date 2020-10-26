@@ -1,7 +1,9 @@
+import { useState, useEffect } from 'react';
 import { 
   observable,
   action,
   makeObservable, 
+  autorun,
 } from 'mobx';
 import { Form } from '../../domain/types';
 
@@ -51,10 +53,18 @@ type ReturnType = {
   updateForm: (form: Form) => void; 
 }
 
-export const useFormsState = (): ReturnType => ({
-  forms: storage.Forms,
-  setForms: storage.SetForms.bind(storage),
-  addForm: storage.AddForm.bind(storage),
-  deleteForm: storage.DeleteForm.bind(storage),
-  updateForm: storage.UpdateForm.bind(storage),
-});
+export const useFormsState = (): ReturnType => {
+  const [forms, setForms] = useState(storage.Forms);
+
+  useEffect(() => autorun(() => {
+    setForms(storage.Forms);
+  }), []);
+
+  return {
+    forms,
+    setForms: storage.SetForms.bind(storage),
+    addForm: storage.AddForm.bind(storage),
+    deleteForm: storage.DeleteForm.bind(storage),
+    updateForm: storage.UpdateForm.bind(storage),
+  };
+};
