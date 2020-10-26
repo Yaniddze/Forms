@@ -101,7 +101,7 @@ export const FormsPage: FC<PropTypes> = () => {
         <FormUpdateTemplate 
           onSubmit={handleUpdateSubmit}
           buttonText={form !== undefined && form.id !== '' ? 'Обновить' : 'Добавить'}
-          item={selectedForm as Form || { id: '', fields: {} }} 
+          item={form || { id: '', fields: {} }} 
         />
       </Modal>
 
