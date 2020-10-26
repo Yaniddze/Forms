@@ -40,7 +40,7 @@ export const FormShow: FC<PropTypes> = (
 ) => {
   const keys = Object.keys(item.fields);
 
-  const fields = keys.map((key) => {
+  const fields = keys.map((key, index) => {
     const field: any = item.fields[key];
     const fieldType = GetFieldType(field);
     
@@ -81,7 +81,7 @@ export const FormShow: FC<PropTypes> = (
     }
 
     return (
-      <div>
+      <div key={index}>
         {itemInput}
       </div>
     );
