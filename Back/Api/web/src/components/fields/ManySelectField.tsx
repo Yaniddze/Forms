@@ -13,7 +13,7 @@ type PropTypes = {
   disabled: boolean;
 }
 
-export const ManyField: FC<PropTypes> = (
+export const ManySelectField: FC<PropTypes> = (
   { 
     value, 
     onChange, 

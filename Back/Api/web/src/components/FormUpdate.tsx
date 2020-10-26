@@ -26,7 +26,7 @@ import {
   DateField,
   NumberField,
   TextField,
-  ManyField,
+  ManySelectField,
 } from './fields';
 
 const Wrapper = styled.div`
@@ -120,7 +120,7 @@ export const FormUpdate: FC<PropTypes> = (
       
       case ManySelectTitle:
         itemInput = (
-          <ManyField {...props} />
+          <ManySelectField {...props} />
         );
         break;
       
