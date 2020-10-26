@@ -12,7 +12,7 @@ import {
 } from 'react-bootstrap';
 
 // Templates
-import { FormUpdateTemplate } from '../components/FormUpdateTemplate';
+import { FormUpdateTemplate } from '../components/FormTemplate';
 import { FormDeclaration } from '../components/FormDeclaration';
 
 // Hooks
