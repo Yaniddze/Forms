@@ -6,14 +6,21 @@ type PropTypes = {
   value: number;
   onChange: (newValue: number) => void;
   label: string;
+  disabled: boolean;
 }
 
 export const NumberField: FC<PropTypes> = (
-  { value, onChange, label }: PropTypes,
+  { 
+    value, 
+    onChange, 
+    label,
+    disabled, 
+  }: PropTypes,
 ) => (
   <Form.Group>
     <Form.Label>{label}</Form.Label>
     <Form.Control 
+      disabled={disabled}
       value={value}
       type="number"
       onChange={(e: ChangeEvent<HTMLInputElement>) => {

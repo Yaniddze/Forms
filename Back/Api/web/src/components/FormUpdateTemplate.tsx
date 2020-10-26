@@ -27,7 +27,7 @@ import {
   NumberField,
   TextField,
   ManyField,
-} from './fieldsUpdate';
+} from './fields';
 
 const Wrapper = styled.div`
   display: flex;
@@ -81,79 +81,46 @@ export const FormUpdateTemplate: FC<PropTypes> = (
     
     let itemInput: ReactElement = <div />;
 
+    const props = {
+      disabled: false,
+      value: values[key],
+      label: key,
+      onChange: (newValue: any) => {
+        setValues((old: any) => ({
+          ...old,
+          [key]: newValue,
+        }));
+      },
+    };
+
     switch (fieldType) {
       case BooleanFieldTitle:
         itemInput = (
-          <BooleanField 
-            checked={values[key]}
-            label={key}
-            onChange={() => {
-              setValues((old: any) => ({
-                ...old,
-                [key]: !old[key],
-              }));
-            }}
-          />
+          <BooleanField {...props} />
         );
         break;
 
       case DateFieldTitle:
         itemInput = (
-          <DateField 
-            label={key}
-            value={values[key] as Date}
-            onChange={(newDate: Date) => {
-              setValues((old: any) => ({
-                ...old,
-                [key]: newDate,
-              }));
-            }}
-          />
+          <DateField {...props} />
         );
         break;
       
       case TextFieldTitle:
         itemInput = (
-          <TextField 
-            label={key}
-            value={values[key]}
-            onChange={(newValue: string) => {
-              setValues((old: any) => ({
-                ...old,
-                [key]: newValue,
-              }));
-            }}
-          />
+          <TextField {...props} />
         );
         break;
       
       case NumberFieldTitle:
         itemInput = (
-          <NumberField
-            value={values[key]}
-            label={key}
-            onChange={(newValue: number) => {
-              setValues((old: any) => ({
-                ...old,
-                [key]: newValue,
-              }));
-            }}
-          />
+          <NumberField {...props} />
         );
         break;
       
       case ManySelectTitle:
         itemInput = (
-          <ManyField 
-            label={key}
-            value={values[key] as ManySelect}
-            onChange={(newValue: ManySelect) => {
-              setValues((old: any) => ({
-                ...old,
-                [key]: newValue,
-              }));
-            }}
-          />
+          <ManyField {...props} />
         );
         break;
       

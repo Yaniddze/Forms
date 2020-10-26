@@ -10,10 +10,16 @@ type PropTypes = {
   value: ManySelect;
   onChange: (newValue: ManySelect) => void;
   label: string;
+  disabled: boolean;
 }
 
 export const ManyField: FC<PropTypes> = (
-  { value, onChange, label }: PropTypes,
+  { 
+    value, 
+    onChange, 
+    label,
+    disabled, 
+  }: PropTypes,
 ) => { 
   const handleChange = (title: string): void => {
     if (value.selected.includes(title)) {      
@@ -31,6 +37,7 @@ export const ManyField: FC<PropTypes> = (
 
   const items = value.values.map((title) => (
     <Form.Check
+      disabled={disabled}
       label={title}
       key={title}
       type="checkbox"

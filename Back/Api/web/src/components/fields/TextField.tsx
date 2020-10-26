@@ -6,10 +6,16 @@ type PropTypes = {
   value: string;
   onChange: (newValue: string) => void;
   label: string;
+  disabled: boolean;
 }
 
 export const TextField: FC<PropTypes> = (
-  { value, onChange, label }: PropTypes,
+  { 
+    value, 
+    onChange, 
+    label,
+    disabled, 
+  }: PropTypes,
 ) => (
   <Form.Group>
     <Form.Label>{label}</Form.Label>
