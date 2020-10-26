@@ -78,8 +78,6 @@ export const FormsPage: FC<PropTypes> = () => {
     setDeclarationOpen(true);
   };
 
-  console.log(state);
-
   return (
     <Wrapper>
 

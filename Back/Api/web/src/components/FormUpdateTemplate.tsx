@@ -27,7 +27,7 @@ import {
   NumberField,
   TextField,
   ManyField,
-} from './fields';
+} from './fieldsUpdate';
 
 const Wrapper = styled.div`
   display: flex;
