@@ -26,7 +26,8 @@ import {
 const FormWrapper = styled.div`
   border: 1px solid black;
   margin: 10px 0;
-  padding: 5px;
+  padding: 10px;
+  border-radius: 10px;
 `;
 
 type PropTypes = {

@@ -42,6 +42,20 @@ const ButtonWrapper = styled.div`
   }
 `;
 
+const ShowFormsWrapper = styled.div`
+  @media(min-width: 610px) {
+    & {
+      display: flex;
+      flex-wrap: wrap;
+
+      > div {
+        width: 300px;
+        margin: 10px;
+      }
+    }
+  }
+`;
+
 type PropTypes = {
   children?: never;
 }
@@ -113,7 +127,10 @@ export const FormsPage: FC<PropTypes> = () => {
       </Modal>
 
       <div>
-        {forms}
+        <h2>Формы</h2>
+        <ShowFormsWrapper>
+          {forms}
+        </ShowFormsWrapper>
       </div>
 
       <ButtonWrapper>
