@@ -54,7 +54,7 @@ type PropTypes = {
   buttonText: string;
 }
 
-export const FormUpdateTemplate: FC<PropTypes> = (
+export const FormUpdate: FC<PropTypes> = (
   { item, onSubmit, buttonText }: PropTypes,
 ) => {
   const keys = Object.keys(item.fields);
