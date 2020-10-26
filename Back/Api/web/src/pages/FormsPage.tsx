@@ -43,14 +43,32 @@ const ButtonWrapper = styled.div`
 `;
 
 const ShowFormsWrapper = styled.div`
-  @media(min-width: 610px) {
-    & {
-      display: flex;
-      flex-wrap: wrap;
+  display: flex;
+  
+  > div {
+    margin: 10px auto;
+    width: 100%;
+  }
 
+  @media(min-width: 680px) {
+    & {
       > div {
-        width: 300px;
-        margin: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        width: 640px;
+  
+        > div {
+          width: 300px;
+          margin: 10px;
+        }
+      }
+    }
+  }
+
+  @media(min-width: 1000px) {
+    & {
+      > div {
+        width: 980px;
       }
     }
   }
@@ -129,7 +147,9 @@ export const FormsPage: FC<PropTypes> = () => {
       <div>
         <h2>Формы</h2>
         <ShowFormsWrapper>
-          {forms}
+          <div>
+            {forms}
+          </div>
         </ShowFormsWrapper>
       </div>
 
