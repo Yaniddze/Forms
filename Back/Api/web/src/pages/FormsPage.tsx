@@ -65,6 +65,8 @@ export const FormsPage: FC<PropTypes> = () => {
     } else {
       update.fetch(form);
     }
+
+    handleModalUpdateHide();
   };
 
   const handleDeclarationSubmit = (form: Form): void => {
