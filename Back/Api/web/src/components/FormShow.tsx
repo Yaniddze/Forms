@@ -3,6 +3,8 @@ import React, {
   ReactElement, 
 } from 'react';
 
+import styled from 'styled-components';
+
 import { 
   Form, 
   GetFieldType,
@@ -21,6 +23,12 @@ import {
   DateField,
 } from './fields';
 
+const FormWrapper = styled.div`
+  border: 1px solid black;
+  margin: 10px 0;
+  padding: 5px;
+`;
+
 type PropTypes = {
   children?: never;
   item: Form;
@@ -35,12 +43,12 @@ export const FormShow: FC<PropTypes> = (
     const field: any = item.fields[key];
     const fieldType = GetFieldType(field);
     
-    let itemInput: ReactElement = <div />;
+    let itemInput: ReactElement;
 
     const props = {
       disabled: true,
-      value: field,
       label: key,
+      value: field,
       onChange: (newValue: any) => {
         console.log(newValue);
       },
@@ -56,7 +64,7 @@ export const FormShow: FC<PropTypes> = (
         break;
 
       case DateFieldTitle:
-        itemInput = <DateField {...props} />;
+        itemInput = <DateField {...props} value={new Date(field)} />;
         break;
 
       case ManySelectTitle:
@@ -79,8 +87,8 @@ export const FormShow: FC<PropTypes> = (
   });
 
   return (
-    <div>
+    <FormWrapper>
       {fields}
-    </div>
+    </FormWrapper>
   );
 };

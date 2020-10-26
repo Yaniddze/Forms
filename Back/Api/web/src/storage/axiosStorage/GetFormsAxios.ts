@@ -24,7 +24,13 @@ export class GetFormsAxios implements GetForms {
 
   Handle(count: number, offset: number): Promise<StorageAnswer<Form[]>> {
     return this.httpClient.get(`/get?Count=${count}&Offset=${offset}`)
-      .then((result: AxiosResponse<StorageAnswer<Form[]>>) => result.data)
+      .then((result: AxiosResponse<StorageAnswer<Form[]>>) => ({
+        ...result.data,
+        data: result.data.data.map((form) => ({
+          ...form,
+          fields: JSON.parse(form.fields as any),
+        })),
+      }))
       .catch((e: AxiosError) => {
         if (e.message === this.cancellationWord) {
           return {

@@ -14,6 +14,7 @@ import {
 // Templates
 import { FormUpdate } from '../components/FormUpdate';
 import { FormDeclaration } from '../components/FormDeclaration';
+import { FormShow } from '../components/FormShow';
 
 // Hooks
 import { 
@@ -80,6 +81,10 @@ export const FormsPage: FC<PropTypes> = () => {
 
   const form = (selectedForm as Form);
 
+  const forms = !state.fetching && state.value.map((mappedForm) => (
+    <FormShow item={mappedForm} key={mappedForm.id} />
+  )); 
+
   return (
     <Wrapper>
 
@@ -104,6 +109,10 @@ export const FormsPage: FC<PropTypes> = () => {
           item={form || { id: '', fields: {} }} 
         />
       </Modal>
+
+      <div>
+        {forms}
+      </div>
 
       <ButtonWrapper>
         <Button 

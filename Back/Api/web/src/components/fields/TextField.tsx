@@ -20,6 +20,7 @@ export const TextField: FC<PropTypes> = (
   <Form.Group>
     <Form.Label>{label}</Form.Label>
     <Form.Control 
+      disabled={disabled}
       value={value}
       type="text"
       onChange={(e: ChangeEvent<HTMLInputElement>) => {
