@@ -4,7 +4,6 @@ import {
   BooleanFieldTitle,
   DateFieldTitle,
   NumberFieldTitle,
-  TextFieldTitle,
   ManySelectTitle,
 } from './types';
 
@@ -13,19 +12,28 @@ const BooleanChecker: TypeChecker = {
   check: (value: any) => typeof value === 'boolean',
 };
 
-const TextChecker: TypeChecker = {
-  type: TextFieldTitle,
-  check: (value: any) => typeof value === 'string',
-};
-
 const DateChecker: TypeChecker = {
   type: DateFieldTitle,
-  check: (value: any) => value instanceof Date,
+  check: (value: any) => {
+    if (typeof value === 'number') return false;
+    const date = new Date(value);
+
+    return !Number.isNaN(date.getTime());
+  },
 };
 
 const ManySeclectChecker: TypeChecker = {
   type: ManySelectTitle,
-  check: (value: any) => value instanceof ManySelect,
+  check: (value: any) => {
+    const valueKeys = Object.keys(value);
+    const manyKeys = Object.getOwnPropertyNames(new ManySelect());
+
+    if (valueKeys.includes(manyKeys[0]) && valueKeys.includes(manyKeys[1])) {
+      return Array.isArray(value[manyKeys[0]]) && Array.isArray(value[manyKeys[1]]); 
+    }
+
+    return false;
+  },
 };
 
 const NumberChecker: TypeChecker = {
@@ -35,7 +43,6 @@ const NumberChecker: TypeChecker = {
 
 export const TypeCheckers: TypeChecker[] = [
   BooleanChecker,
-  TextChecker,
   DateChecker,
   ManySeclectChecker,
   NumberChecker,
